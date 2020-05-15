@@ -1,3 +1,4 @@
+import json
 import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QAction, qApp, QWidget, QVBoxLayout, QTabWidget, QPushButton, \
     QInputDialog, QLineEdit, QTableWidget, QTableWidgetItem
@@ -103,8 +104,6 @@ class MyTableWidget(QWidget):
         SaveButton.clicked.connect(self.SaveClick)
         self.tab2.layout.addWidget(SaveButton)
         self.tab2.setLayout(self.tab2.layout)
-
-
         # Add tabs to widget
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
@@ -118,6 +117,25 @@ class MyTableWidget(QWidget):
             print("Save")
 
 
+    def SaveClick(self):
+                print("save")
+                dictionnaire = {}
+                if self.tableWidget.item(0, 1):
+                    dictionnaire['nom'] = self.tableWidget.item(0, 1).text()
+                if self.tableWidget.item(1, 1):
+                    dictionnaire['prenom'] = self.tableWidget.item(1, 1).text()
+                if self.tableWidget.item(2, 1):
+                    dictionnaire['Date'] = self.tableWidget.item(2, 1).text()
+                if self.tableWidget.item(3, 1):
+                    dictionnaire['Sexe'] = self.tableWidget.item(3, 1).text()
+                if self.tableWidget.item(4, 1):
+                    dictionnaire['Taille'] = self.tableWidget.item(4, 1).text()
+                if self.tableWidget.item(5, 1):
+                    dictionnaire['Poids'] = self.tableWidget.item(5, 1).text()
+
+                print(dictionnaire)
+                with open('data.json', 'w') as fp:
+                    json.dump(dictionnaire, fp)
 
 
 
