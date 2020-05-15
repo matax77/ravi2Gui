@@ -99,6 +99,12 @@ class MyTableWidget(QWidget):
         self.tableWidget.setItem(4, 0, QTableWidgetItem("Taille ?"))
         self.tableWidget.setItem(5, 0, QTableWidgetItem("Poid ?"))
 
+        SaveButton = QPushButton("Sauvegarder?")
+        SaveButton.clicked.connect(self.SaveClick)
+        self.tab2.layout.addWidget(SaveButton)
+        self.tab2.setLayout(self.tab2.layout)
+
+
         # Add tabs to widget
         self.layout.addWidget(self.tabs)
         self.setLayout(self.layout)
@@ -108,6 +114,8 @@ class MyTableWidget(QWidget):
         nom,type = QInputDialog.getText(self,"input dialog","Votre Nom ?",QLineEdit.Normal,"")
         print(nom)
 
+    def SaveClick(self):
+            print("Save")
 
 
 
